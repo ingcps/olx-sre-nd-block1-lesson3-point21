@@ -1,0 +1,17 @@
+version: 2.1
+
+workflows:
+  olx-sre-nd-block1-lesson3-point21-job-failure:
+    jobs:
+      - job_failure
+
+jobs:
+  job_failure:
+    docker:
+      - image: circleci/node:13.8.0
+    steps:
+      - run: return 1
+      - run:
+          name: Error handling step
+          command: echo "running the error handling step"
+          when: on_fail
